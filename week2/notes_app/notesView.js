@@ -1,22 +1,31 @@
-const NotesModel = require('./notesModel');
+const NotesModel = require("./notesModel");
 
 class NotesView {
   constructor(model) {
     this.model = model;
-    this.mainContainerEl = document.querySelector('#main-container');
+    this.mainContainerEl = document.querySelector("#main-container");
+    this.buttonEl = document.querySelector("#add-note-btn");
+    this.inputEl = document.querySelector("#note-input");
+
+    this.buttonEl.addEventListener("click", () => {
+      this.addNewNote(this.inputEl.value);
+    });
   }
 
   displayNotes() {
-    let notes = this.model.getNotes();
+    const allNotes = this.model.getNotes();
 
-    notes.forEach(note => {
-      const div = document.createElement('div');
-
-      div.textContent = note;
-      div.className = 'note';
-
-      this.mainContainerEl.append(div);
+    allNotes.forEach((note) => {
+      const noteEl = document.createElement("div");
+      noteEl.textContent = note;
+      noteEl.className = "note";
+      this.mainContainerEl.append(noteEl);
     });
+  }
+
+  addNewNote(newNote) {
+    this.model.addNote(newNote);
+    this.displayNotes();
   }
 }
 

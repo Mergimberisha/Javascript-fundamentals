@@ -1,27 +1,22 @@
-const NotesModel = require('./notesModel');
+const NotesModel = require("./notesModel");
 
 describe("NotesModel", () => {
-    it ("#getNotes returns a empty array", ()=> {
-        const notes = new NotesModel;
-        expect(notes.getNotes()).toEqual([]);
-    })
+  it("should return an empty array when no notes are added", () => {
+    const model = new NotesModel();
+    expect(model.getNotes()).toEqual([]);
+  });
 
-    it('#addNotes adds new notes to the array', () => {
-        const notes = new NotesModel;
+  it("should now return ['Buy milk', 'Go to the gym']", () => {
+    const model = new NotesModel();
+    model.addNote("Buy milk");
+    model.addNote("Go to the gym");
 
-        notes.addNotes('Go to the shops');
-        notes.addNotes('Buy milk');
-        
-        expect(notes.getNotes()).toEqual(['Go to the shops', 'Buy milk']);
-    })
+    expect(model.getNotes()).toEqual(["Buy milk", "Go to the gym"]);
+  });
 
-    it('#reset deletes all notes from the array', () => {
-        const notes = new NotesModel;
-
-        notes.addNotes('Go to the shops');
-        notes.addNotes('Buy milk');
-        notes.reset();
-
-        expect(notes.getNotes()).toEqual([]);
-    })
-})
+  it("should reset the array", () => {
+    const model = new NotesModel();
+    model.reset();
+    expect(model.getNotes()).toEqual([]);
+  });
+});
