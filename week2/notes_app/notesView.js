@@ -13,14 +13,20 @@ class NotesView {
   }
 
   displayNotes() {
-    const allNotes = this.model.getNotes();
-
-    allNotes.forEach((note) => {
-      const noteEl = document.createElement("div");
-      noteEl.textContent = note;
-      noteEl.className = "note";
-      this.mainContainerEl.append(noteEl);
+    // 1. Remove all previous notes
+    document.querySelectorAll('.note').forEach(element => {
+      element.remove();
     });
+  
+    const notes = this.model.getNotes()
+  
+    // For each note, create and append a new element on the main container
+    notes.forEach(note => {
+      const noteEl = document.createElement('div');
+      noteEl.textContent = note;
+      noteEl.className = 'note';
+      this.mainContainerEl.append(noteEl);
+    })
   }
 
   addNewNote(newNote) {
