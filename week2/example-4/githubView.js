@@ -19,14 +19,16 @@ class GithubView {
   display(data) {
     const repoDescription = document.querySelector('#repo-description');
     const nameDescription = document.querySelector('#repo-name');
-    const descriptionInformation = document.createElement('div')
-    descriptionInformation.textContent = data.description
-    descriptionInformation.className = 'api info'
-    const nameInformation = document.createElement('div')
-    nameInformation.textContent = data.full_name
-    nameInformation.className = 'api info'
-    repoDescription.append(nameInformation)
-    repoDescription.append(descriptionInformation)
+    const imageURL = document.querySelector('#img');
+    const descriptionInformation = document.createElement('div');
+    descriptionInformation.textContent = data.description;
+    descriptionInformation.className = 'api info';
+    const nameInformation = document.createElement('div');
+    nameInformation.textContent = data.full_name;
+    nameInformation.className = 'api info';
+    repoDescription.append(nameInformation);
+    repoDescription.append(descriptionInformation);
+    imageURL.src = data.organization.avatar_url;
   }
 }
 
