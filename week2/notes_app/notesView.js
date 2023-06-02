@@ -8,7 +8,9 @@ class NotesView {
     this.inputEl = document.querySelector("#note-input");
 
     this.buttonEl.addEventListener("click", () => {
+      console.log(this.inputEl)
       this.addNewNote(this.inputEl.value);
+      this.displayNotes()
     });
   }
 
@@ -19,7 +21,7 @@ class NotesView {
     });
   
     const notes = this.model.getNotes()
-  
+
     // For each note, create and append a new element on the main container
     notes.forEach(note => {
       const noteEl = document.createElement('div');
